@@ -225,9 +225,11 @@ button {
 .signUpBar {
   margin-top: 3rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   position: inherit;
+  background: #ececec;
+  border-radius: 50px;
 }
 
 .signInButton,
