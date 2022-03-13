@@ -1,12 +1,18 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import {db} from '../firebase.config'
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import VisibilityIcon from "../assets/svg/visibilityIcon.svg";
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
+    name: "",
     email: "",
     password: "",
   });
@@ -22,14 +28,37 @@ function SignUp() {
     formData[event.target.id] = event.target.value;
   };
 
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const auth = getAuth();
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      const user = userCredential.user;
+        console.log(user);
+      updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className="pageContainer">
         <header>
           <p className="pageHeader">Welcome Back!</p>
         </header>
-        <form>
-        <input
+        <form onSubmit={onSubmit}>
+          <input
             id="name"
             type="text"
             className="nameInput"
@@ -53,6 +82,7 @@ function SignUp() {
               placeholder="Password"
               value={password}
               onChange={handleChangeInput}
+              autoComplete='true'
             />
 
             <img
