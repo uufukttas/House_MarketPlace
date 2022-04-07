@@ -8,7 +8,7 @@ function Profile() {
   useEffect(() => {
     setUser(auth.currentUser);
   }, []);
-  return user ? <h1>{user.displayName}</h1> : 'Not user';
+  return user ? <h1>{user.displayName}</h1> : "Not user";
 }
 
 export default Profile;

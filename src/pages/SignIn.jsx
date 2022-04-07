@@ -34,7 +34,7 @@ function SignIn() {
       );
 
       if (userCredential.user) {
-        navigate('/');
+        navigate('/profile');
       }
     } catch (error) {
       console.log(error);
