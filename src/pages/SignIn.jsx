@@ -53,7 +53,7 @@ function SignIn() {
               onClick={() => setShowPassword((prevState) => !prevState)}
             />
           </div>
-          <Link to="/forgot_password" className="forgotPasswordLink">
+          <Link to="/forgot-password" className="forgotPasswordLink">
             Forgot Password
           </Link>
 
@@ -65,7 +65,7 @@ function SignIn() {
           </div>
         </form>
         {/*Google OAth */}
-        <Link to="/sign_up" className="registerLink">
+        <Link to="/sign-up" className="registerLink">
           Sign Up
         </Link>
       </div>

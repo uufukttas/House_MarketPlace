@@ -5,7 +5,8 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import {db} from '../firebase.config'
+import { setDoc, doc, timestamp, serverTimestamp } from "firebase/firestore";
+import { db } from "../firebase.config";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import VisibilityIcon from "../assets/svg/visibilityIcon.svg";
 
@@ -40,10 +41,17 @@ function SignUp() {
       );
 
       const user = userCredential.user;
-        console.log(user);
+
       updateProfile(auth.currentUser, {
         displayName: name,
       });
+
+      // const formDataCopy = { ...formData };
+      // delete formDataCopy.password;
+
+      // formDataCopy.timestamp = serverTimestamp();
+
+      // await setDoc(doc(db, "users", user.uid), formDataCopy);
 
       navigate("/");
     } catch (error) {
@@ -82,7 +90,7 @@ function SignUp() {
               placeholder="Password"
               value={password}
               onChange={handleChangeInput}
-              autoComplete='true'
+              autoComplete="true"
             />
 
             <img
@@ -92,7 +100,7 @@ function SignUp() {
               onClick={() => setShowPassword((prevState) => !prevState)}
             />
           </div>
-          <Link to="/forgot_password" className="forgotPasswordLink">
+          <Link to="/forgot-password" className="forgotPasswordLink">
             Forgot Password
           </Link>
 
@@ -104,7 +112,7 @@ function SignUp() {
           </div>
         </form>
         {/*Google OAth */}
-        <Link to="/sign_in" className="registerLink">
+        <Link to="/sign-in" className="registerLink">
           Sign In
         </Link>
       </div>
