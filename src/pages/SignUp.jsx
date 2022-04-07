@@ -50,7 +50,7 @@ function SignUp() {
       delete formDataCopy.password;
 
       formDataCopy.timestamp = serverTimestamp();
-debugger;
+      debugger;
       await setDoc(doc(db, "users", user.uid), formDataCopy);
 
       navigate("/");
